@@ -3,6 +3,8 @@ import { MaterialCommunityIcons } from '@expo/vector-icons'
 
 import { posts } from './posts'
 
+import {Post} from './Post'
+
 export default function App() {
 
   return (
@@ -20,30 +22,7 @@ export default function App() {
       <ScrollView>
         {
           posts.map((post) => (
-            <View key={post.id}>
-
-              <View style={styles.headerPost}>
-                <Text style={styles.whiteColor}>{post.user}</Text>
-                <MaterialCommunityIcons name='dots-horizontal' size={30} color="#ffffff" />
-              </View>
-
-              <Image style={styles.imagePost} source={{ uri: post.image }} />
-
-              <View style={styles.footerPost}>
-                <TouchableOpacity onPress={() => Vibration.vibrate(500)}>
-                  <MaterialCommunityIcons name='heart-outline' size={30} color="#CCC" />
-                </TouchableOpacity>
-                <TouchableOpacity>
-                  <MaterialCommunityIcons name='chat-outline' size={30} color="#CCC" />
-                </TouchableOpacity>
-                <TouchableOpacity>
-                  <MaterialCommunityIcons name='share-outline' size={30} color="#CCC" />
-                </TouchableOpacity>
-              </View>
-
-              <Text style={styles.likeCount}> {post.likes} likes</Text>
-              <Text style={styles.comment}>{post.caption}</Text>
-            </View>
+            <Post post={post}></Post>
           ))
         }
       </ScrollView>
@@ -75,7 +54,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
   imagePost: {
-    width: '100%', 
+    width: '90%', 
     height: 350, 
     borderRadius: 10, 
     resizeMode: 'cover'
